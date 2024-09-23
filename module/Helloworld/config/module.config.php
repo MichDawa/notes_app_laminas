@@ -33,6 +33,7 @@ return [
     'controllers' => [
         'factories' => [
             Controller\HelloWorldController::class => Factory\LoggerFactory::class,
+            Controller\HelloWorldController::class => InvokableFactory::class,
         ],
     ],
 
