@@ -5,10 +5,16 @@ declare(strict_types=1);
 namespace Helloworld;
 
 use Laminas\Router\Http\Literal;
-use Laminas\Router\Http\Segment;
 use Laminas\ServiceManager\Factory\InvokableFactory;
+use Laminas\Log\Logger;
+
 
 return [
+    'service_manager' => [
+        'factories' => [
+            Logger::class => Factory\LoggerFactory::class,
+        ],
+    ],
     'router' => [
         'routes' => [
             'helloworld' => [
@@ -23,11 +29,14 @@ return [
             ],
         ],
     ],
+    
     'controllers' => [
         'factories' => [
-            Controller\HelloWorldController::class => InvokableFactory::class,
+            Controller\HelloWorldController::class => Factory\LoggerFactory::class,
         ],
     ],
+
+    
     'view_manager' => [
         'display_not_found_reason' => true,
         'display_exceptions'       => true,
@@ -36,7 +45,7 @@ return [
         'exception_template'       => 'error/index',
         'template_map' => [
             'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
-            'helloworld/index/index' => __DIR__ . '/../view/helloworld/hello-world/index.phtml',
+            'helloworld/index/index'  => __DIR__ . '/../view/helloworld/hello-world/index.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
         ],
