@@ -18,8 +18,6 @@ return [
     'Laminas\Validator',
     'Laminas\DeveloperTools',
     'Laminas\ZendFrameworkBridge',
-
     'Application',
     'Helloworld',
 ];
-
