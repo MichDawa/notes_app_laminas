@@ -23,8 +23,7 @@
         "laminas/laminas-log": "^2.15",
         "laminas/laminas-di": "^3.9",
         "laminas/laminas-db": "^2.15",
-        "laminas/laminas-developer-tools": "^2.5",
-        "laminas/laminas-zendframework-bridge": "^1.6"
+        "laminas/laminas-developer-tools": "^2.5"
     },
     "autoload": {
         "psr-4": {
