@@ -17,7 +17,7 @@ return [
                     'route'    => '/helloworld',
                     'defaults' => [
                         'controller' => Controller\HelloWorldController::class,
-                        'action'     => 'index',
+                        'action'     => 'helloworld',
                     ],
                 ],
             ],
@@ -36,7 +36,7 @@ return [
         'exception_template'       => 'error/index',
         'template_map' => [
             'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
-            'helloworld/hello-world/index' => __DIR__ . '/../view/helloworld/hello-world/index.phtml',
+            'helloworld/index/index' => __DIR__ . '/../view/helloworld/hello-world/index.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
         ],

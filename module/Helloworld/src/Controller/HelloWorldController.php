@@ -9,7 +9,7 @@ use Laminas\View\Model\ViewModel;
 
 class HelloWorldController extends AbstractActionController
 {
-    public function indexAction()
+    public function helloworldAction()
     {
         return new ViewModel(['message' => 'Hello, World!']);
     }

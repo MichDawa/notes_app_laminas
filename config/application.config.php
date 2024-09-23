@@ -17,6 +17,10 @@ return [
         // use composer autoloader instead of laminas-loader
         'use_laminas_loader' => false,
 
+        'module_paths' => [
+            './module',
+            './vendor',
+        ],
         // An array of paths from which to glob configuration files after
         // modules are loaded. These effectively override configuration
         // provided by modules themselves. Paths may use GLOB_BRACE notation.
