@@ -17,14 +17,14 @@ return [
                     'route'    => '/notes[/:action]',
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
-                        'action'     => 'index',
+                        'action'     => 'all',
                     ],
                 ],
             ],
             'new' => [
-                'type'    => Literal::class,
+                'type'    => Segment::class,
                 'options' => [
-                    'route'    => '/new',
+                    'route'    => '/new[/:action]',
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
                         'action'     => 'new',
@@ -42,9 +42,9 @@ return [
                 ],
             ],
             'edit' => [
-                'type'    => Literal::class,
+                'type'    => Segment::class,
                 'options' => [
-                    'route'    => '/edit',
+                    'route'    => '/edit[/:action]',
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
                         'action'     => 'edit',
@@ -52,9 +52,9 @@ return [
                 ],
             ],
             'delete' => [
-                'type'    => Literal::class,
+                'type'    => Segment::class,
                 'options' => [
-                    'route'    => '/delete',
+                    'route'    => '/delete[/:action]',
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
                         'action'     => 'delete',
@@ -76,7 +76,7 @@ return [
         'exception_template'       => 'error/index',
         'template_map' => [
             'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
-            'notes/index/index' => __DIR__ . '/../view/notes/index/index.phtml',
+            'notes/index/all' => __DIR__ . '/../view/notes/index/all.phtml',
             'notes/index/new' => __DIR__ . '/../view/notes/index/new.phtml',
             'notes/index/view' => __DIR__ . '/../view/notes/index/view.phtml',
             'notes/index/edit' => __DIR__ . '/../view/notes/index/edit.phtml',
