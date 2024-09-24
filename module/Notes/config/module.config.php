@@ -21,6 +21,46 @@ return [
                     ],
                 ],
             ],
+            'new' => [
+                'type'    => Literal::class,
+                'options' => [
+                    'route'    => '/new',
+                    'defaults' => [
+                        'controller' => Controller\IndexController::class,
+                        'action'     => 'new',
+                    ],
+                ],
+            ],
+            'view' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/view[/:action]',
+                    'defaults' => [
+                        'controller' => Controller\IndexController::class,
+                        'action'     => 'view',
+                    ],
+                ],
+            ],
+            'edit' => [
+                'type'    => Literal::class,
+                'options' => [
+                    'route'    => '/edit',
+                    'defaults' => [
+                        'controller' => Controller\IndexController::class,
+                        'action'     => 'edit',
+                    ],
+                ],
+            ],
+            'delete' => [
+                'type'    => Literal::class,
+                'options' => [
+                    'route'    => '/delete',
+                    'defaults' => [
+                        'controller' => Controller\IndexController::class,
+                        'action'     => 'delete',
+                    ],
+                ],
+            ],
         ],
     ],
     'controllers' => [
@@ -37,6 +77,10 @@ return [
         'template_map' => [
             'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
             'notes/index/index' => __DIR__ . '/../view/notes/index/index.phtml',
+            'notes/index/new' => __DIR__ . '/../view/notes/index/new.phtml',
+            'notes/index/view' => __DIR__ . '/../view/notes/index/view.phtml',
+            'notes/index/edit' => __DIR__ . '/../view/notes/index/edit.phtml',
+            'notes/index/delete' => __DIR__ . '/../view/notes/index/delete.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
         ],
