@@ -66,5 +66,8 @@
             "laminas/laminas-component-installer": true,
             "laminas/laminas-skeleton-installer": true
         }
+    },
+    "require-dev": {
+        "laminas/laminas-test": "^4.3"
     }
 }
