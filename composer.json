@@ -28,7 +28,7 @@
     "autoload": {
         "psr-4": {
             "Application\\": "module/Application/src/",
-            "Helloworld\\": "module/Helloworld/src/"
+            "Notes\\": "module/Notes/src/"
         }
     },
     "autoload-dev": {

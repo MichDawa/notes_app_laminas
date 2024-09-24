@@ -9,8 +9,17 @@ use Laminas\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
 {
+    public function homeAction()
+    {
+        $viewModel = new ViewModel();
+        $viewModel->setTemplate('application/index/home');
+        return $viewModel;
+    }
+
     public function indexAction()
     {
-        return new ViewModel();
+        $viewModel = new ViewModel();
+        $viewModel->setTemplate('application/index/index');
+        return $viewModel;
     }
 }
