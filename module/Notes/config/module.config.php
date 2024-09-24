@@ -16,7 +16,7 @@ return [
                 'options' => [
                     'route'    => '/notes[/:action]',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
+                        'controller' => Controller\NoteController::class,
                         'action'     => 'all',
                     ],
                 ],
@@ -26,7 +26,7 @@ return [
                 'options' => [
                     'route'    => '/new[/:action]',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
+                        'controller' => Controller\NoteController::class,
                         'action'     => 'new',
                     ],
                 ],
@@ -36,7 +36,7 @@ return [
                 'options' => [
                     'route'    => '/view[/:action]',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
+                        'controller' => Controller\NoteController::class,
                         'action'     => 'view',
                     ],
                 ],
@@ -46,7 +46,7 @@ return [
                 'options' => [
                     'route'    => '/edit[/:action]',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
+                        'controller' => Controller\NoteController::class,
                         'action'     => 'edit',
                     ],
                 ],
@@ -56,7 +56,7 @@ return [
                 'options' => [
                     'route'    => '/delete[/:action]',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
+                        'controller' => Controller\NoteController::class,
                         'action'     => 'delete',
                     ],
                 ],
@@ -65,7 +65,7 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            Controller\IndexController::class => InvokableFactory::class,
+            Controller\NoteController::class => InvokableFactory::class,
         ],
     ],
     'view_manager' => [
@@ -76,11 +76,11 @@ return [
         'exception_template'       => 'error/index',
         'template_map' => [
             'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
-            'notes/index/all' => __DIR__ . '/../view/notes/index/all.phtml',
-            'notes/index/new' => __DIR__ . '/../view/notes/index/new.phtml',
-            'notes/index/view' => __DIR__ . '/../view/notes/index/view.phtml',
-            'notes/index/edit' => __DIR__ . '/../view/notes/index/edit.phtml',
-            'notes/index/delete' => __DIR__ . '/../view/notes/index/delete.phtml',
+            'notes/note/all' => __DIR__ . '/../view/notes/index/all.phtml',
+            'notes/note/new' => __DIR__ . '/../view/notes/index/new.phtml',
+            'notes/note/view' => __DIR__ . '/../view/notes/index/view.phtml',
+            'notes/note/edit' => __DIR__ . '/../view/notes/index/edit.phtml',
+            'notes/note/delete' => __DIR__ . '/../view/notes/index/delete.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
         ],
