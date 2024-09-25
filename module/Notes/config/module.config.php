@@ -7,6 +7,8 @@ namespace Notes;
 use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
+use Doctrine\DBAL\Driver\Mysqli\Driver;
 
 return [
     'router' => [
@@ -35,6 +37,7 @@ return [
             },
         ],
     ],
+
     'view_manager' => [
         'display_not_found_reason' => true,
         'display_exceptions'       => true,
@@ -55,4 +58,36 @@ return [
             __DIR__ . '/../view',
         ],
     ],
+
+    'doctrine' => [
+
+        'connection' => [
+            'orm_default' => [
+                'driverClass' => Driver::class,
+                'params'   => [
+                    'host'     => 'localhost',
+                    'port'     => '3306',
+                    'dbname'   => 'todo_db',
+                    'user'     => 'root',
+                    'password' => '',
+                ],
+            ],
+        ],
+
+        'driver' => [
+            'orm_default' => [
+                'class' => AnnotationDriver::class,
+                'paths' => [__DIR__ . '/../src/Entity'], // Path to your entity classes
+            ],
+        ],
+
+        'configuration' => [
+            'orm_default' => [
+                'proxy_dir' => __DIR__ . '/../data/DoctrineORMModule/Proxy',
+                'proxy_namespace' => 'DoctrineORMModule\Proxy',
+            ],
+        ],
+    ],
+
+
 ];
