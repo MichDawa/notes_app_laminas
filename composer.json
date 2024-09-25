@@ -24,7 +24,10 @@
         "laminas/laminas-di": "^3.9",
         "laminas/laminas-db": "^2.15",
         "laminas/laminas-developer-tools": "^2.5",
-        "doctrine/orm": "^2.19"
+        "doctrine/orm": "^2.19",
+        "doctrine/migrations": "^3.5",
+        "doctrine/dbal": "^3.9",
+        "doctrine/doctrine-orm-module": "^5.3"
     },
     "autoload": {
         "psr-4": {

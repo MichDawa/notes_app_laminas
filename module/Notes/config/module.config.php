@@ -6,7 +6,7 @@ namespace Notes;
 
 use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;
-use Laminas\ServiceManager\Factory\InvokableFactory;
+use Doctrine\ORM\EntityManager;
 
 return [
     'router' => [
@@ -14,58 +14,25 @@ return [
             'notes' => [
                 'type'    => Segment::class,
                 'options' => [
-                    'route'    => '/notes[/:action]',
+                    'route'    => '/notes[/:id[/:action]]',
                     'defaults' => [
                         'controller' => Controller\NoteController::class,
                         'action'     => 'all',
                     ],
-                ],
-            ],
-            'new' => [
-                'type'    => Segment::class,
-                'options' => [
-                    'route'    => '/new[/:action]',
-                    'defaults' => [
-                        'controller' => Controller\NoteController::class,
-                        'action'     => 'new',
-                    ],
-                ],
-            ],
-            'view' => [
-                'type'    => Segment::class,
-                'options' => [
-                    'route'    => '/view[/:action]',
-                    'defaults' => [
-                        'controller' => Controller\NoteController::class,
-                        'action'     => 'view',
-                    ],
-                ],
-            ],
-            'edit' => [
-                'type'    => Segment::class,
-                'options' => [
-                    'route'    => '/edit[/:action]',
-                    'defaults' => [
-                        'controller' => Controller\NoteController::class,
-                        'action'     => 'edit',
-                    ],
-                ],
-            ],
-            'delete' => [
-                'type'    => Segment::class,
-                'options' => [
-                    'route'    => '/delete[/:action]',
-                    'defaults' => [
-                        'controller' => Controller\NoteController::class,
-                        'action'     => 'delete',
+                    'constraints' => [
+                        'id' => '[0-9]+',
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                     ],
                 ],
             ],
         ],
     ],
+
     'controllers' => [
         'factories' => [
-            Controller\NoteController::class => InvokableFactory::class,
+            Controller\NoteController::class => function ($container) {
+                return new Controller\NoteController($container->get(EntityManager::class));
+            },
         ],
     ],
     'view_manager' => [
