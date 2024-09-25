@@ -24,4 +24,5 @@ return [
 
     'DoctrineModule',
     'DoctrineORMModule',
+    // 'DoctrineMigrations',
 ];

@@ -14,6 +14,7 @@ return [
 
     // These are various options for the listeners attached to the ModuleManager
     'module_listener_options' => [
+        
         // use composer autoloader instead of laminas-loader
         'use_laminas_loader' => false,
 

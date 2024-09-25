@@ -74,10 +74,16 @@ return [
             ],
         ],
 
+        'migrations' => [
+            'directory' => 'data/DoctrineMigrations',
+            'namespace' => 'DoctrineMigrations',
+            'table' => 'doctrine_migration_versions',
+        ],
+
         'driver' => [
             'orm_default' => [
                 'class' => AnnotationDriver::class,
-                'paths' => [__DIR__ . '/../src/Entity'], // Path to your entity classes
+                'paths' => ['C:\Users\mldawa\Desktop\CRUD\notes_app_laminas\backend\module\Notes\src\Entity'], // Path to your entity classes
             ],
         ],
 
@@ -87,6 +93,8 @@ return [
                 'proxy_namespace' => 'DoctrineORMModule\Proxy',
             ],
         ],
+        
+        'is_dev_mode' => false,
     ],
 
 

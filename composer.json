@@ -27,7 +27,8 @@
         "doctrine/orm": "^2.19",
         "doctrine/migrations": "^3.5",
         "doctrine/dbal": "^3.9",
-        "doctrine/doctrine-orm-module": "^5.3"
+        "doctrine/doctrine-orm-module": "^5.3",
+        "doctrine/annotations": "^1.14"
     },
     "autoload": {
         "psr-4": {
