@@ -29,32 +29,30 @@ class NoteController extends AbstractActionController
 
     public function newAction()
     {
-        error_log("newAction method reached");
+        $data = json_decode($this->getRequest()->getContent(), true);
 
-        $form = new NoteForm();
-
-        /** @var \Laminas\Http\Request $request */
-        $request = $this->getRequest();
-
-        if ($request->isPost()) {
-            error_log("Request is POST");
-
-            $data = $request->getPost()->toArray();
-
-            $form->setData($data);
-
-            if ($form->isValid()) {
-                $note = new Note();
-                $note->exchangeArray($form->getData());
-
-                $this->entityManager->persist($note);
-                $this->entityManager->flush();
-
-                return $this->redirect()->toRoute('notes', ['action' => 'all']);
-            }
+        if (!$data) {
+            $response = new Response();
+            $response->setStatusCode(Response::STATUS_CODE_400);
+            return new JsonModel(['error' => 'Invalid JSON']);
         }
 
-        return new ViewModel(['form' => $form]);
+        $form = new NoteForm();
+        $form->setData($data);
+
+        if ($form->isValid()) {
+            $note = new Note();
+            $note->exchangeArray($form->getData());
+
+            $this->entityManager->persist($note);
+            $this->entityManager->flush();
+
+            return $this->redirect()->toRoute('notes', ['action' => 'all']);
+        }
+
+        $response = new Response();
+        $response->setStatusCode(Response::STATUS_CODE_400);
+        return new JsonModel($form->getMessages());
     }
 
     public function viewAction()
@@ -96,7 +94,8 @@ class NoteController extends AbstractActionController
 
         if ($form->isValid()) {
             $this->entityManager->flush();
-            return new JsonModel($note->getArrayCopy());
+
+            return $this->redirect()->toRoute('notes', ['action' => 'all']);
         }
 
         $response = new Response();
@@ -121,6 +120,7 @@ class NoteController extends AbstractActionController
 
         $response = new Response();
         $response->setStatusCode(Response::STATUS_CODE_200);
-        return new JsonModel(['message' => 'Note deleted']);
+        
+        return $this->redirect()->toRoute('notes', ['action' => 'all']);
     }
 }

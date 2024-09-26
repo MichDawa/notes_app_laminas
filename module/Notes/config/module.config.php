@@ -47,10 +47,10 @@ return [
         'template_map' => [
             'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
             'notes/note/all' => __DIR__ . '/../view/notes/index/all.phtml',
-            'notes/note/new' => __DIR__ . '/../view/notes/index/new.phtml',
+            // 'notes/note/new' => __DIR__ . '/../view/notes/index/new.phtml',
             'notes/note/view' => __DIR__ . '/../view/notes/index/view.phtml',
-            'notes/note/edit' => __DIR__ . '/../view/notes/index/edit.phtml',
-            'notes/note/delete' => __DIR__ . '/../view/notes/index/delete.phtml',
+            // 'notes/note/edit' => __DIR__ . '/../view/notes/index/edit.phtml',
+            // 'notes/note/delete' => __DIR__ . '/../view/notes/index/delete.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
         ],
