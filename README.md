@@ -74,8 +74,12 @@ vendor/bin/doctrine-module orm:clear-cache:metadata
 ```bash
 vendor/bin/doctrine-module migrations:sync-metadata-storage
 ```
-13. serve project
+13. enable development mode
+```bash
+composer development-enable
+```
+14. serve project
 ```bash
 php -S localhost:8080 -t public
 ```
-14. test in postman (raw json)
+15. test in postman (raw json)
