@@ -16,7 +16,7 @@ return [
             'notes' => [
                 'type'    => Segment::class,
                 'options' => [
-                    'route'    => '/notes[/:id[/:action]]',
+                    'route'    => '/notes[/:action[/:id]]',
                     'defaults' => [
                         'controller' => Controller\NoteController::class,
                         'action'     => 'all',

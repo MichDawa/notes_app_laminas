@@ -7,30 +7,33 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="Notes\Repository\NoteRepository")
  * @ORM\Table(name="note")
+ * @ORM\HasLifecycleCallbacks
  */
 class Note
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(type="integer", name = "id")
+     * @ORM\Column(type="integer", name="id")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true, name = "title")
+     * @ORM\Column(type="string", length=255, nullable=true, name="title")
      */
     private $title;
 
     /**
-     * @ORM\Column(type="text", nullable=true, name = "content")
+     * @ORM\Column(type="text", nullable=true, name="content")
      */
     private $content;
 
     /**
-     * @ORM\Column(type="datetime", name = "created_at")
+     * @ORM\Column(type="datetime", name="created_at")
      */
     private $createdAt;
+
+    // Getters and setters
 
     public function getId(): ?int
     {
@@ -70,10 +73,22 @@ class Note
         return $this;
     }
 
+    /**
+     * Automatically set createdAt before persisting the entity.
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        if ($this->createdAt === null) {
+            $this->createdAt = new \DateTime();
+        }
+    }
+
     public function exchangeArray(array $data)
     {
         $this->title = $data['title'] ?? null;
         $this->content = $data['content'] ?? null;
+        // Automatically set createdAt if not already set
         $this->createdAt = new \DateTime();
     }
 

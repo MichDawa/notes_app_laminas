@@ -10,6 +10,7 @@ use Notes\Form\NoteForm;
 use Notes\Entity\Note;
 use Doctrine\ORM\EntityManager;
 use Laminas\Http\Response;
+use Laminas\View\Model\ViewModel;
 
 class NoteController extends AbstractActionController
 {
@@ -23,35 +24,37 @@ class NoteController extends AbstractActionController
     public function allAction()
     {
         $notes = $this->entityManager->getRepository(Note::class)->findAll();
-        return new JsonModel($notes);
+        return new ViewModel(['notes' => $notes]);
     }
 
     public function newAction()
     {
-        $data = json_decode($this->getRequest()->getContent(), true);
-
-        if (!$data) {
-            $response = new Response();
-            $response->setStatusCode(Response::STATUS_CODE_400);
-            return new JsonModel(['error' => 'Invalid JSON']);
-        }
+        error_log("newAction method reached");
 
         $form = new NoteForm();
-        $form->setData($data);
 
-        if ($form->isValid()) {
-            $note = new Note();
-            $note->exchangeArray($form->getData());
+        /** @var \Laminas\Http\Request $request */
+        $request = $this->getRequest();
 
-            $this->entityManager->persist($note);
-            $this->entityManager->flush();
+        if ($request->isPost()) {
+            error_log("Request is POST");
 
-            return new JsonModel($note->getArrayCopy());
+            $data = $request->getPost()->toArray();
+
+            $form->setData($data);
+
+            if ($form->isValid()) {
+                $note = new Note();
+                $note->exchangeArray($form->getData());
+
+                $this->entityManager->persist($note);
+                $this->entityManager->flush();
+
+                return $this->redirect()->toRoute('notes', ['action' => 'all']);
+            }
         }
 
-        $response = new Response();
-        $response->setStatusCode(Response::STATUS_CODE_400);
-        return new JsonModel($form->getMessages());
+        return new ViewModel(['form' => $form]);
     }
 
     public function viewAction()
@@ -65,7 +68,7 @@ class NoteController extends AbstractActionController
             return new JsonModel(['error' => 'Note not found']);
         }
 
-        return new JsonModel($note->getArrayCopy());
+        return new ViewModel(['note' => $note]);
     }
 
     public function editAction()

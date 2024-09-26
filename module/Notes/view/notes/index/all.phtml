@@ -1,1 +1,15 @@
-<h1>ALL</h1>
+<h1>All Notes</h1>
+
+<?php if (empty($this->notes)): ?>
+    <p>No notes found.</p>
+<?php else: ?>
+    <ul>
+        <?php foreach ($this->notes as $note): ?>
+            <li>
+                <strong><?= $this->escapeHtml($note->getTitle()) ?></strong>: 
+                <?= $this->escapeHtml($note->getContent()) ?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+
+<?php endif; ?>

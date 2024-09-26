@@ -11,6 +11,7 @@ class NoteForm extends Form
     {
         parent::__construct('note');
 
+        // Title field
         $this->add([
             'name' => 'title',
             'type' => Element\Text::class,
@@ -22,6 +23,7 @@ class NoteForm extends Form
             ],
         ]);
 
+        // Content field
         $this->add([
             'name' => 'content',
             'type' => Element\Textarea::class,
@@ -30,6 +32,16 @@ class NoteForm extends Form
             ],
             'attributes' => [
                 'placeholder' => "What's on your mind?",
+            ],
+        ]);
+
+        // Submit button
+        $this->add([
+            'name' => 'submit',
+            'type' => Element\Submit::class,
+            'attributes' => [
+                'value' => 'Submit',
+                'id'    => 'submitbutton',
             ],
         ]);
     }

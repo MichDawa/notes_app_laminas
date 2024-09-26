@@ -1,1 +1,9 @@
-<h1>VIEW</h1>
+<h1>View Note #<?= $this->escapeHtml($this->note->getId()) ?></h1>
+
+<?php if (!$this->note): ?>
+    <p>No note found.</p>
+<?php else: ?>
+    <h2><?= $this->escapeHtml($this->note->getTitle()) ?></h2>
+    <p><?= nl2br($this->escapeHtml($this->note->getContent())) ?></p>
+    <p><em>Created at: <?= $this->escapeHtml($this->note->getCreatedAt()->format('Y-m-d H:i:s')) ?></em></p>
+<?php endif; ?>
