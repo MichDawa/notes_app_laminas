@@ -5,6 +5,10 @@ declare(strict_types=1);
 use Laminas\Mvc\Application;
 use Laminas\Stdlib\ArrayUtils;
 
+// Ensure error display settings are correctly set as strings
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
 
 chdir(dirname(__DIR__));
 
@@ -17,7 +21,6 @@ if (php_sapi_name() === 'cli-server') {
 }
 
 include __DIR__ . '/../vendor/autoload.php';
-
 
 if (! class_exists(Application::class)) {
     throw new RuntimeException(

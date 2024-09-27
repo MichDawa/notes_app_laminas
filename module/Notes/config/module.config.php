@@ -27,6 +27,33 @@ return [
                     ],
                 ],
             ],
+            'api-tools' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route'    => '/api-tools',
+                    'defaults' => [
+                        'controller' => 'Laminas\ApiTools\Admin\Controller\IndexController',
+                        'action'     => 'index',
+                    ],
+                ],
+                'may_terminate' => true,
+                'child_routes'  => [
+                    'rest' => [
+                        'type'    => Segment::class,
+                        'options' => [
+                            'route'    => '/rest[/:controller][/:id]',
+                            'constraints' => [
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id'         => '[0-9]+',
+                            ],
+                            'defaults' => [
+                                
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+
         ],
     ],
 
