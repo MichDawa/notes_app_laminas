@@ -78,12 +78,12 @@ vendor/bin/doctrine-module migrations:sync-metadata-storage
 ```bash
 composer development-enable
 ```
-14. Go to config/autoload/doctrine.global.php AND module\Notes\config and edit the path under the drivers
+14. Go to config/autoload/doctrine.global.php AND module/Notes/config/module.config.php and edit the path under the drivers
 ```bash
 'driver' => [
             'orm_default' => [
                 'class' => AnnotationDriver::class,
-                'paths' => ['C:\Users\path\to\src\Entity'],
+                'paths' => ['C:\Users\path\to\Notes\src\Entity'],
             ],
         ],
 ```
