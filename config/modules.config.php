@@ -36,6 +36,7 @@ return [
     'Laminas\ApiTools\Admin\Ui',
     
     // Your custom modules
+    'Laminas\ApiTools',
     'Application',
     'Notes',
 

@@ -28,7 +28,7 @@ composer require doctrine/doctrine-migrations-bundle
 3. go to C:\xampp\php\php.ini and enable extension=intl
 4. go to xampp control panel, start apache and mysql, and press shell
 ```bash
-sql -u root -p
+mysql -u root -p
 ```
 5. create database
 ```bash
