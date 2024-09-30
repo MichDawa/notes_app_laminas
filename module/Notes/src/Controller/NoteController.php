@@ -10,7 +10,6 @@ use Notes\Form\NoteForm;
 use Notes\Entity\Note;
 use Doctrine\ORM\EntityManager;
 use Laminas\Http\Response;
-use Laminas\View\Model\ViewModel;
 
 class NoteController extends AbstractActionController
 {
@@ -24,7 +23,11 @@ class NoteController extends AbstractActionController
     public function allAction()
     {
         $notes = $this->entityManager->getRepository(Note::class)->findAll();
-        return new ViewModel(['notes' => $notes]);
+        $notesArray = array_map(function (Note $note) {
+            return $note->getArrayCopy();
+        }, $notes);
+
+        return new JsonModel(['notes' => $notesArray]);
     }
 
     public function newAction()
@@ -47,7 +50,7 @@ class NoteController extends AbstractActionController
             $this->entityManager->persist($note);
             $this->entityManager->flush();
 
-            return $this->redirect()->toRoute('notes', ['action' => 'all']);
+            return new JsonModel(['message' => 'Note created successfully', 'note' => $note->getArrayCopy()]);
         }
 
         $response = new Response();
@@ -66,7 +69,7 @@ class NoteController extends AbstractActionController
             return new JsonModel(['error' => 'Note not found']);
         }
 
-        return new ViewModel(['note' => $note]);
+        return new JsonModel(['note' => $note->getArrayCopy()]);
     }
 
     public function editAction()
@@ -95,7 +98,7 @@ class NoteController extends AbstractActionController
         if ($form->isValid()) {
             $this->entityManager->flush();
 
-            return $this->redirect()->toRoute('notes', ['action' => 'all']);
+            return new JsonModel(['message' => 'Note updated successfully', 'note' => $note->getArrayCopy()]);
         }
 
         $response = new Response();
@@ -121,6 +124,6 @@ class NoteController extends AbstractActionController
         $response = new Response();
         $response->setStatusCode(Response::STATUS_CODE_200);
         
-        return $this->redirect()->toRoute('notes', ['action' => 'all']);
+        return new JsonModel(['message' => 'Note deleted successfully']);
     }
 }
