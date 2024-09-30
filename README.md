@@ -67,7 +67,7 @@ CREATE TABLE doctrine_migration_versions (
 INSERT INTO doctrine_migration_versions (version, executed_at) VALUES ('Version20240926105400', NOW());
 
 ```
-12. go back to terminal and
+12. make sure the data/cache folder exists (if not, make new folder named "cache" inside data), then go back to terminal and
 ```bash
 vendor/bin/doctrine-module orm:clear-cache:metadata
 ```
@@ -78,8 +78,17 @@ vendor/bin/doctrine-module migrations:sync-metadata-storage
 ```bash
 composer development-enable
 ```
-14. serve project
+14. Go to config/autoload/doctrine.global.php AND module\Notes\config and edit the path under the drivers
+```bash
+'driver' => [
+            'orm_default' => [
+                'class' => AnnotationDriver::class,
+                'paths' => ['C:\Users\path\to\src\Entity'],
+            ],
+        ],
+```
+15. serve project
 ```bash
 php -S localhost:8080 -t public
 ```
-15. test in postman (raw json)
+16. test in postman (raw json)
