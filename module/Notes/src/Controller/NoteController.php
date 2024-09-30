@@ -23,11 +23,13 @@ class NoteController extends AbstractActionController
     public function allAction()
     {
         $notes = $this->entityManager->getRepository(Note::class)->findAll();
-        $notesArray = array_map(function (Note $note) {
-            return $note->getArrayCopy();
-        }, $notes);
+        $data = [];
 
-        return new JsonModel(['notes' => $notesArray]);
+        foreach ($notes as $note) {
+            $data[] = $note->getArrayCopy();
+        }
+
+        return new JsonModel(['notes' => $data]);
     }
 
     public function newAction()
@@ -123,7 +125,7 @@ class NoteController extends AbstractActionController
 
         $response = new Response();
         $response->setStatusCode(Response::STATUS_CODE_200);
-        
+
         return new JsonModel(['message' => 'Note deleted successfully']);
     }
 }
