@@ -6,6 +6,7 @@ namespace Notes;
 
 use Laminas\Mvc\MvcEvent;
 use Laminas\Db\Adapter\Adapter;
+use Notes\Listener\CorsListener;
 
 class Module
 {
@@ -28,12 +29,11 @@ class Module
         ];
     }
 
-    public function onBootstrap(MvcEvent $e)
+    public function onBootstrap(MvcEvent $event)
     {
-        $app = $e->getApplication();
-        $em  = $app->getEventManager();
-
-        $em->attach(MvcEvent::EVENT_ROUTE, [$this, 'enableCors'], -1000);
+        $eventManager = $event->getApplication()->getEventManager();
+        $corsListener = new CorsListener();
+        $corsListener->attach($eventManager); // Attach the listener here
     }
 
     public function enableCors(MvcEvent $e)
