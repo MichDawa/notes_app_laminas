@@ -46,9 +46,7 @@ return [
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'id'         => '[0-9]+',
                             ],
-                            'defaults' => [
-                                
-                            ],
+                            'defaults' => [],
                         ],
                     ],
                 ],
@@ -127,6 +125,17 @@ return [
 
         'is_dev_mode' => false,
     ],
+
+    'service_manager' => [
+        'factories' => [
+            Listener\CorsListener::class => function ($container) {
+                return new \Notes\Listener\CorsListener();
+            },
+        ],
+    ],
+    'listeners' => [
+        Listener\CorsListener::class,
+    ]
 
 
 ];
