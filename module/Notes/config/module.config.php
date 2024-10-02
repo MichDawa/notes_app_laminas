@@ -122,20 +122,7 @@ return [
                 'proxy_namespace' => 'DoctrineORMModule\Proxy',
             ],
         ],
-
         'is_dev_mode' => false,
     ],
-
-    'service_manager' => [
-        'factories' => [
-            Listener\CorsListener::class => function ($container) {
-                return new \Notes\Listener\CorsListener();
-            },
-        ],
-    ],
-    'listeners' => [
-        Listener\CorsListener::class,
-    ]
-
 
 ];
