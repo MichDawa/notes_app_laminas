@@ -32,7 +32,7 @@ return [
         'driver' => [
             'orm_default' => [
                 'class' => AnnotationDriver::class,
-                'paths' => ['C:\Users\Mich\Desktop\CRUD\full_notes_app\backend\module\Notes\src\Entity'],
+                'paths' => [__DIR__ . '/../../module/Notes/src/Entity'],
             ],
         ],
 
