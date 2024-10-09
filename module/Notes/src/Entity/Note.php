@@ -80,7 +80,8 @@ class Note
     public function prePersist()
     {
         if ($this->createdAt === null) {
-            $this->createdAt = new \DateTime();
+            $timezone = new \DateTimeZone('Asia/Manila');
+            $this->createdAt = new \DateTime('now', $timezone);
         }
     }
 
@@ -88,7 +89,6 @@ class Note
     {
         $this->title = $data['title'] ?? null;
         $this->content = $data['content'] ?? null;
-        // Automatically set createdAt if not already set
         $this->createdAt = new \DateTime();
     }
 
