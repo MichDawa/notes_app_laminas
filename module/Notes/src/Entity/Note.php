@@ -29,6 +29,11 @@ class Note
     private $content;
 
     /**
+     * @ORM\Column(type="string", nullable=true, name="color")
+     */
+    private $color;
+
+    /**
      * @ORM\Column(type="datetime", name="created_at")
      */
     private $createdAt;
@@ -62,6 +67,17 @@ class Note
         return $this;
     }
 
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    public function setColor(?string $color): self
+    {
+        $this->color = $color;
+        return $this;
+    }
+
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
@@ -89,6 +105,7 @@ class Note
     {
         $this->title = $data['title'] ?? null;
         $this->content = $data['content'] ?? null;
+        $this->color = $data['color'] ?? null;
         $this->createdAt = new \DateTime();
     }
 
@@ -98,6 +115,7 @@ class Note
             'id' => $this->id,
             'title' => $this->title,
             'content' => $this->content,
+            'color' => $this->color,
             'createdAt' => $this->createdAt ? $this->createdAt->format('Y-m-d H:i:s') : null,
         ];
     }

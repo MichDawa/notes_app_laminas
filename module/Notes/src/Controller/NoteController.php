@@ -49,6 +49,23 @@ class NoteController extends AbstractActionController
             $note = new Note();
             $note->exchangeArray($form->getData());
 
+            $lastNote = $this->entityManager->getRepository(Note::class)->findOneBy([], ['createdAt' => 'DESC']);
+
+            $colors = ['red', 'blue', 'yellow', 'green', 'orange'];
+
+            if ($lastNote) {
+                $lastColor = $lastNote->getColor();
+                if (($key = array_search($lastColor, $colors)) !== false) {
+                    unset($colors[$key]);
+                }
+            }
+
+            $colors = array_values($colors);
+
+            $randomColor = $colors[array_rand($colors)];
+
+            $note->setColor($randomColor);
+
             $this->entityManager->persist($note);
             $this->entityManager->flush();
 
