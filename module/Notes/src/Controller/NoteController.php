@@ -51,7 +51,7 @@ class NoteController extends AbstractActionController
 
             $lastNote = $this->entityManager->getRepository(Note::class)->findOneBy([], ['createdAt' => 'DESC']);
 
-            $colors = ['red', 'blue', 'yellow', 'green', 'orange'];
+            $colors = ['#fcd9da', '#cac8f4', '#f6eedb', '#b5e3d8', '#ffc4a4'];
 
             if ($lastNote) {
                 $lastColor = $lastNote->getColor();
